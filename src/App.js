@@ -1,13 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+require('./App.css');
+
+const list =[
+    {
+        title: 'React',
+        url: 'https://facebook.github.io/react/',
+       author: 'Jordan Walke',
+        num_comments: 3,
+        points: 4,
+        objectId: 0
+    },
+    {
+        title: 'Redux',
+        url: 'https://facebook.github.io/react/',
+        num_comments: 2,
+        author: 'Dan Abramov, Andrew Clark',
+        points: 5,
+        objectId: 1
+    },
+]
 
 class App extends Component {
   render() {
-    var helloWorld = "Hi, this is Bharat, welcome to my first react app!";
-    return(
-      <div>
-        <h2>{helloWorld}</h2>
+    return (
+      <div className="App">
+       {list.map(item => {
+            return(
+             <div key={item.objectId}>
+                 <span> 
+                     <a href={item.url}> {item.title}</a>
+                 </span>
+                 <span>{item.author}</span>
+                 <span>{item.num_comments}</span>
+                 <span>{item.points}</span>
+             </div>
+            );
+       })}
       </div>
     );
   }
