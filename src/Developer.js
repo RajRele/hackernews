@@ -11,3 +11,7 @@ class Developer{
 
 const bharat = new Developer('Bharat', 'Rele');
 console.log(bharat.getName());
+
+class MeetingManager{
+  
+}
