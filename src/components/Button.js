@@ -1,13 +1,8 @@
-import React, { Component } from 'react';
-class Button extends Component{
-    render() {
-        const{
-            onClick,
-            className = '',
-            children,
-        } = this.props;
+import React from 'react';
+function Button(props) {
+    const{ onClick, className = '', children, } = props;
 
-        return (
+    return (
             <button
                 onClick = {onClick}
                 className ={className}
@@ -17,5 +12,4 @@ class Button extends Component{
             </button>
         );
     }
-}
 export default Button;

@@ -67,9 +67,8 @@ class App extends Component {
   }
 }
 
-class Search extends Component {
-  render() {
-    const { value, onChange, children } = this.props;
+function Search(props) {
+    const { value, onChange, children } = props; // ES6 Destructuring
     return (
       <form>
        {children}<input
@@ -80,11 +79,10 @@ class Search extends Component {
       </form>
     );
   }
-}
 
-class Table extends Component {
-  render() {
-    const { list, pattern, onDismiss } = this.props;
+function Table (props) {
+    //functional stateless component
+    const { list, pattern, onDismiss } = props;
     return (
       <div>
         {list.filter(isSearched(pattern)).map(item =>
@@ -105,5 +103,4 @@ class Table extends Component {
       </div>
     );
   }
-}
 export default App;
