@@ -21,17 +21,33 @@ const list = [
     objectID: 1,
   },
   {
-    title: 'Bharat',
+    title: 'Awesome! Winner!',
     url: 'https://github.com/reactjs/redux',
-    author: 'Ayaan, Rele Aparna',
+    author: 'Bharat Rele',
     num_comments: 2,
     points: 5,
     objectID: 2,
   },
   {
-    title: 'Rele',
+    title: 'Mom Makes Me happy',
     url: 'https://github.com/reactjs/redux',
-    author: 'Ayaan Raj Rele',
+    author: 'Aparna Pai Rele',
+    num_comments: 2,
+    points: 5,
+    objectID: 4,
+  },
+  {
+    title: 'Party House',
+    url: 'https://github.com/reactjs/redux',
+    author: 'Akshata Pai',
+    num_comments: 2,
+    points: 5,
+    objectID: 5,
+  },
+  {
+    title: 'Rele Baby',
+    url: 'https://github.com/reactjs/redux',
+    author: 'Ayaan Rele ',
     num_comments: 2,
     points: 5,
     objectID: 3,
@@ -39,7 +55,6 @@ const list = [
 ];
 
 class App extends Component {
-
   constructor(props) {
     super(props);
 
@@ -65,12 +80,14 @@ class App extends Component {
   render() {
     const { searchTerm, list } = this.state;
     return (
-      <div className="App">
+      <div className="page">
+          <div className="interactions">
         <Search
           value={searchTerm}
           onChange={this.onSearchChange}
          Search
         />
+        </div>
         <Table
           list={list}
           pattern={searchTerm}
