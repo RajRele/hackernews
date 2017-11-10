@@ -3,68 +3,42 @@ import Search from './components/Search';
 import Table from './components/Table';
 require('./App.css');
 
-const list = [
-  {
-    title: 'React',
-    url: 'https://facebook.github.io/react/',
-    author: 'Jordan Walke',
-    num_comments: 3,
-    points: 4,
-    objectID: 0,
-  },
-  {
-    title: 'Redux',
-    url: 'https://github.com/reactjs/redux',
-    author: 'Dan Abramov, Andrew Clark',
-    num_comments: 200,
-    points: 50,
-    objectID: 1,
-  },
-  {
-    title: 'Awesome! Winner!',
-    url: 'https://github.com/reactjs/redux',
-    author: 'Bharat Rele',
-    num_comments: 223,
-    points: 52,
-    objectID: 2,
-  },
-  {
-    title: 'Mom Makes Me happy',
-    url: 'https://github.com/reactjs/redux',
-    author: 'Aparna Pai Rele',
-    num_comments: 122,
-    points: 25,
-    objectID: 4,
-  },
-  {
-    title: 'Party House',
-    url: 'https://github.com/reactjs/redux',
-    author: 'Akshata Pai',
-    num_comments: 52,
-    points: 15,
-    objectID: 5,
-  },
-  {
-    title: 'Rele Baby',
-    url: 'https://github.com/reactjs/redux',
-    author: 'Ayaan Rele ',
-    num_comments: 2,
-    points: 5,
-    objectID: 3,
-  },
-];
+const DEFAULT_QUERY = 'angular';
+
+const PATH_BASE = 'https://hn.algolia.com/api/v1';
+const PATH_SEARCH = '/search';
+const PARAM_SEARCH = 'query=';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  
+    constructor(props) {
+        super(props);
 
     this.state = {
-      list,
-      searchTerm: '',
+      result: null,
+      searchTerm: DEFAULT_QUERY,
     };
 
+    this.setSearchTopstories = this.setSearchTopstories.bind(this);
+    this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  setSearchTopstories(result){
+      this.setState({ result });
+  }
+
+  fetchSearchTopstories(searchTerm){
+       fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
+       .then(response => response.json())
+       .then(result => this.setSearchTopstories(result))
+       .catch(e => e);
+  }
+
+  componentDidMount(){
+      const{ searchTerm } = this.state;
+      this.fetchSearchTopstories(searchTerm);
   }
 
   onSearchChange(event) {
@@ -78,7 +52,10 @@ class App extends Component {
   }
 
   render() {
-    const { searchTerm, list } = this.state;
+    const { searchTerm, result } = this.state;
+ 
+    if(!result) { return null; }
+
     return (
       <div className="page">
           <div className="interactions">
@@ -89,7 +66,7 @@ class App extends Component {
         />
         </div>
         <Table
-          list={list}
+          list={result.hits}
           pattern={searchTerm}
           onDismiss={this.onDismiss}
         />

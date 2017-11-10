@@ -1,4 +1,6 @@
 import React from 'react';
+require('../App.css');
+
 function Button(props) {
     const{ onClick, className = '', children, } = props;
 

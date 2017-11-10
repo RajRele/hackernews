@@ -1,4 +1,5 @@
 import React from 'react';
+
 function Search(props) {
     const { value, onChange, children } = props; // ES6 Destructuring
     return (
