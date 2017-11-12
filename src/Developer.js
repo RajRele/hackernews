@@ -20,6 +20,11 @@ class Node{
 const bharat = new Developer('Bharat', 'Rele');
 console.log(bharat.getName());
 
+const userList = ['Robin', 'Andrew', 'Dan'];
+const additionalUser = 'Jordan';
+const allUsers = [ ...userList, additionalUser ];
+
+console.log(allUsers);
 class MeetingManager{
   
 }
