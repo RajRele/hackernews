@@ -2,16 +2,15 @@ import React from 'react';
 import Button from './Button';
 require('../App.css');
 
-function Table (props) {
+function Table_in (props) {
     //functional stateless component
-    const { list, pattern, onDismiss } = props;
+    const { list, onDismiss } = props;
 
     const isSearched = (searchTerm) => (item) =>
      item.title.toLowerCase().includes(searchTerm.toLowerCase());
-    
     return (
       <div className="table">
-        {list.filter(isSearched(pattern)).map(item =>
+        {list.map(item =>
           <div key={item.objectID} className="table-row">
             <span stlye={{ width: '40%'}}>
               <a href={item.url}>{item.title}</a>
@@ -31,4 +30,3 @@ function Table (props) {
       </div>
     );
   }
-  export default Table;

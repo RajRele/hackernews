@@ -1,7 +1,7 @@
 import React from 'react';
 require('../App.css');
 
-function Button(props) {
+function Button_in(props) {
     const{ onClick, className = '', children, } = props;
 
     return (
@@ -14,4 +14,3 @@ function Button(props) {
             </button>
         );
     }
-export default Button;
