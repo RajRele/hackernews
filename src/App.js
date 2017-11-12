@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 require('./App.css');
 
 const DEFAULT_QUERY = 'redux';
+const DEFAULT_HPP = '100';
 
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
@@ -26,7 +27,20 @@ class App extends Component {
   }
 
   setSearchTopstories(result) {
-    this.setState({ result });
+    const { hits, page } = result;
+
+    const oldHits = page !== 0
+      ? this.state.result.hits
+      : [];
+
+    const updatedHits = [
+      ...oldHits,
+      ...hits
+    ];
+
+    this.setState({
+      result: { hits: updatedHits, page }
+    });
   }
 
   fetchSearchTopstories(searchTerm, page = 0) {
@@ -81,7 +95,7 @@ class App extends Component {
         }
         <div className="interactions">
           <Button onClick={() => this.fetchSearchTopstories(searchTerm, page + 1)}>
-          More
+            More
           </Button>
         </div>
       </div>
