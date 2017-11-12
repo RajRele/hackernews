@@ -19,8 +19,7 @@ class App extends Component {
       results: null,
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
-      error: null,
-      number: 1
+      error: null
     };
 
     this.needToSearchTopStories = this.needToSearchTopStories.bind(this);
@@ -40,7 +39,7 @@ class App extends Component {
 
   setSearchTopstories(result) {
     const { hits, page } = result;
-    const { searchKey, results, number } = this.state;
+    const { searchKey, results } = this.state;
     
     const oldHits = results && results[searchKey]
       ? results[searchKey].hits
@@ -105,8 +104,7 @@ class App extends Component {
       searchTerm, 
       results,
       searchKey,
-      error,
-      number
+      error
      } = this.state;
     
     const page = (
@@ -139,8 +137,8 @@ class App extends Component {
           : <Table
             list={list}
             onDismiss={this.onDismiss}
-            number={number}
-          />   
+            number = {1}
+           />   
         } 
         <div className="interactions">
           <Button onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
