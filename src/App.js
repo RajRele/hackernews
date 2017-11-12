@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 require('./App.css');
 
 const DEFAULT_QUERY = 'redux';
-const DEFAULT_HPP = '100';
+const DEFAULT_HPP = '50';
 
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
@@ -19,7 +19,8 @@ class App extends Component {
       results: null,
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
-      error: null
+      error: null,
+      number: 1
     };
 
     this.needToSearchTopStories = this.needToSearchTopStories.bind(this);
@@ -39,7 +40,7 @@ class App extends Component {
 
   setSearchTopstories(result) {
     const { hits, page } = result;
-    const { searchKey, results } = this.state;
+    const { searchKey, results, number } = this.state;
     
     const oldHits = results && results[searchKey]
       ? results[searchKey].hits
@@ -104,7 +105,8 @@ class App extends Component {
       searchTerm, 
       results,
       searchKey,
-      error
+      error,
+      number
      } = this.state;
     
     const page = (
@@ -137,6 +139,7 @@ class App extends Component {
           : <Table
             list={list}
             onDismiss={this.onDismiss}
+            number={number}
           />   
         } 
         <div className="interactions">
@@ -167,10 +170,13 @@ const Search = ({
     </button>
   </form>
 
-const Table = ({ list, onDismiss }) =>
+const Table = ({ list, onDismiss, number }) =>
   <div className="table">
     { list.map(item =>
       <div key={item.objectID} className="table-row">
+        <span style={{ width: '3%' }}>
+          {number++}
+        </span>
         <span style={{ width: '40%' }}>
           <a href={item.url}>{item.title}</a>
         </span>
