@@ -25,6 +25,3 @@ const additionalUser = 'Jordan';
 const allUsers = [ ...userList, additionalUser ];
 
 console.log(allUsers);
-class MeetingManager{
-  
-}

@@ -117,7 +117,7 @@ class App extends Component {
       results[searchKey] &&
       results[searchKey].hits
     ) || [];
-
+  
     return (
       <div className="page">
         <div className="interactions">
@@ -168,7 +168,7 @@ const Search = ({
     </button>
   </form>
 
-const Table = ({ list, onDismiss, number }) =>
+const Table = ({ list, onDismiss, number}) =>
   <div className="table">
     { list.map(item =>
       <div key={item.objectID} className="table-row">
