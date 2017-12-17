@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
+import Navbar from './components/Navbar';
 require('./App.css');
 
-const DEFAULT_QUERY = 'redux';
+const DEFAULT_QUERY = 'india';
 const DEFAULT_HPP = '50';
 
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
@@ -121,6 +122,7 @@ class App extends Component {
   
     return (
       <div className="page">
+        <Navbar className="interactions" />
         <div className="interactions">
           <Search
             value={searchTerm}
